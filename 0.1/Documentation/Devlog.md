@@ -11,3 +11,8 @@ make JSON
 Tokenizer: create error function
 Tokenizer: added parentheses support
 Tokenizer: fixed bugs in end_pos return, key word and identifier conflict.
+
+# August 10th 2026
+
+## Goal :
+Create CTests for tokenizer
