@@ -1,1 +1,29 @@
+{
+    "version": "2.0.0",
 
+    "tasks": [
+        {
+            "label": "Build Compiler Debug",
+
+            "type": "shell",
+
+            "command": "C:/Program Files/CMake/bin/cmake.exe",
+
+            "args": [
+                "--build",
+                "build-debug"
+            ],
+
+            "options": {
+                "cwd": "C:/Users/email/CompilerProject"
+            },
+
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            },
+
+            "problemMatcher": "$gcc"
+        }
+    ]
+}
