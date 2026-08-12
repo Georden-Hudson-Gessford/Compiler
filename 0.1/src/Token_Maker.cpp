@@ -1,4 +1,5 @@
 #include "Token_Maker.h"
+#include "Compiler_Parser.h"
 #include <iostream>
 
 
@@ -12,10 +13,20 @@ t.lexeme = e.substr(i, end_pos - i);
 t.pos = i;
 t.type = TokenType::number;
 tokens.push_back(t);
-return end_pos -1;
+return end_pos -1; };
 
-
+int token_maker(std::vector<token>& tokens, int i, int size, const std::string& e, TokenType type) {
+    
+    token t;
+    t.lexeme = e.substr(i, size);
+    t.pos = i;
+    t.type = type;
+    tokens.push_back(t);
+    int returning  = size - 1;
+    
+    return returning;
 }
+
 void token_error(char c, size_t pos) {
 
     std::cout   
@@ -98,103 +109,58 @@ if (isdigit(c)) {
 
 switch (c) {
  case '=' :
-    t.lexeme = e.substr(i, 1);
-    t.type = TokenType::assignment;
-    t.pos = i;
-    tokens.push_back(t);
-    continue;
+    i += token_maker(tokens, i, 1, e, TokenType::assignment);
+        continue;
  
 case '.' :
-    t.lexeme = e.substr(i, 1);
-    t.type = TokenType::period;
-    t.pos = i;
-    tokens.push_back(t);
-    continue;
+    i += token_maker(tokens, i, 1, e, TokenType::period);
+        continue;
 
 case ';' : 
-    t.lexeme = e.substr(i, 1);
-    t.type = TokenType::semicolon;
-    t.pos = i;
-    tokens.push_back(t);
-    continue;
+   i += token_maker(tokens, i, 1, e, TokenType::semicolon);
+        continue;
 case '[' :
-    t.lexeme = e.substr(i, 1);
-    t.type = TokenType::leftbracket;
-    t.pos = i;
-    tokens.push_back(t);
-    continue;
+    i += token_maker(tokens, i, 1, e, TokenType::leftbracket);
+        continue;
 case ']' :
-    t.lexeme = e.substr(i, 1);
-    t.type = TokenType::rightbracket;
-    t.pos = i;
-    tokens.push_back(t);
-    continue;
+    i += token_maker(tokens, i, 1, e, TokenType::rightbracket);
+        continue;
 case '(' : 
-    t.lexeme = e.substr(i, 1);
-    t.type = TokenType::leftparentheses;
-    t.pos = i;
-    tokens.push_back(t);
-    continue;
+    i += token_maker(tokens, i, 1, e, TokenType::leftparentheses);
+        continue;
 case ')' :
-    t.lexeme = e.substr(i, 1);
-    t.type = TokenType::rightparentheses;
-    t.pos = i;
-    tokens.push_back(t);
-    continue;
+    i += token_maker(tokens, i, 1, e, TokenType::rightparentheses);
+        continue;
 case '*' :
-    t.lexeme = e.substr(i ,1);
-    t.type = TokenType::asterisk;
-    t.pos = i;
-    tokens.push_back(t);
-    continue;
+     i += token_maker(tokens, i, 1, e, TokenType::asterisk);
+        continue;
 case '/' :
-    t.lexeme = e.substr(i, 1);
-    t.type = TokenType::slash;
-    t.pos = i;
-    tokens.push_back(t);
-    continue;
+    i += token_maker(tokens, i, 1, e, TokenType::slash);
+        continue;
 case '+' :
-    t.lexeme = e.substr(i, 1);
-    t.type = TokenType::plus;
-    t.pos = i;
-    tokens.push_back(t);
-    continue;
+    i += token_maker(tokens, i, 1, e, TokenType::plus);
+        continue;
+    
 case '-' :
-    t.lexeme = e.substr(i, 1);
-    t.type = TokenType::minus;
-    t.pos = i;
-    tokens.push_back(t);
-    continue; 
+    i += token_maker(tokens, i, 1, e, TokenType::minus);
+        continue;
 case '<' : 
     if (i + 1 < e.size() && e[i+1] == '=' ) {
-        t.lexeme = e.substr(i, 2);
-        t.type = TokenType::leq;
-        t.pos = i;
-        tokens.push_back(t);
-        i += 1;
-        continue; }
+        i += token_maker(tokens, i, 2, e, TokenType::leq);
+        continue;
+        }
     else  
-    t.lexeme = e.substr(i, 1);
-    t.type = TokenType::less;
-    t.pos = i;
-    tokens.push_back(t);
-    continue;
+        i += token_maker(tokens, i, 1, e, TokenType::less);
+        continue;
+
 case '>' : 
     if (i + 1 < e.size() && e[i+1] == '=' ) {
-        t.lexeme = e.substr(i, 2);
-        t.type = TokenType::greq;
-        t.pos = i;
-        tokens.push_back(t);
-        i += 1;
+        i += token_maker(tokens, i, 2, e, TokenType::greq);
         continue; }
     else  
-    t.lexeme = e.substr(i, 1);
-    t.type = TokenType::greater;
-    t.pos = i;
-    tokens.push_back(t);
-    continue;
-
-}
+        i += token_maker(tokens, i, 1, e, TokenType::greater);
+        continue;
+    }   
 
    token_error(c, i);
    continue;
