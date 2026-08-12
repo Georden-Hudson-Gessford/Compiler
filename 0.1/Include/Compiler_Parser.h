@@ -73,6 +73,7 @@ public:
     std::unique_ptr<Node> parse_statement();
     std::vector<std::unique_ptr<Node>> parse_program();
 };
-
+    void print_ast(const std::unique_ptr<Node>& node, int depth = 0);
+    std::string node_type_name(NodeType type);
 
 #endif
