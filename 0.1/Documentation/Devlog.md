@@ -42,3 +42,40 @@ automate tests using Ctests
 write tests for parser
 print the AST through traversal to check formation quickly and easily
 finish parser
+
+# August 12th 2026
+  Finished the parser
+  AST tree traversal to print sideways tree
+  Inspected using Cmake debug
+  began Semantic Analysis
+  Supporting basic checks for division by 0
+  Utilizing a symbol table to check variable semantics
+  
+  
+# August 13th 2026 
+  utilizing recursion and special symbol tables to handle if statement scoping
+  Began generating TAC statements and printing them to check
+  
+# August 14th 2026
+  Began generating assembly
+  
+# August 15th 2026
+  Understanding and implementing the write statement for printing
+  Running on CPU and testing
+  Finished writing tests for the Token maker supprogram.
+
+# August 17th 2026
+  Fixed crossover of TAC and NASM Syntax. Each sub program should do its respective job
+  Started improving division by 0
+  
+
+
+# August 20th 2026
+Division by 0 was enhanced to be able to check situations  such as
+  make x = 0;
+ make y =  1/ ( x + 1 -1 );
+And throw the proper error.
+ 
+
+# August 26th 2026
+Added proper termination of program with the lexer error for unidentified tokens.
