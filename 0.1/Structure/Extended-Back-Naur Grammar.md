@@ -63,7 +63,7 @@ if .x is 8. [
  make x = x +1;
 ]
 
-## arithemtic
+## arithemetic
 
 make x = 5 * x;
 write 4 / 4;
