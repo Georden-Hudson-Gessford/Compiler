@@ -54,10 +54,11 @@ finish parser
   
 # August 13th 2026 
   utilizing recursion and special symbol tables to handle if statement scoping
-  Began generating TAC statements and printing them to check
+  Temporary symbol tables are created for an if statement scope. This checks variables outside the scope as pre existing and adds newly declared variables in this scope to the temporary tables.
+  Began generating TAC statements and printing them to check for validity.
   
 # August 14th 2026
-  Began generating assembly
+  Began generating assembly in ASSEMBLY_GENERATOR
   
 # August 15th 2026
   Understanding and implementing the write statement for printing
@@ -65,7 +66,8 @@ finish parser
   Finished writing tests for the Token maker supprogram.
 
 # August 17th 2026
-  Fixed crossover of TAC and NASM Syntax. Each sub program should do its respective job
+  Fixed crossover of TAC and NASM Syntax. Each sub program should do its respective job.
+  Previously the TAC was adding brackets for the generated NASM, this is no longer the case and the ASSEMBLY_GENERATOR now completes this
   Started improving division by 0
   
 
