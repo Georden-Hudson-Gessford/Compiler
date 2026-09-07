@@ -1,1 +1,36 @@
 
+# TAC Generation
+The Intermediate Representation (IR) takes the AST structure and  simplifies it in a form which can be more easily transformed into assembly. 
+The compiler uses Three-Address-Code for its IR.
+Whereas the AST is hierarchical strucutre of nodes, the TAC is a linear sequence of simple operations.
+Each line in three address code can have up to 3 names/addresses. 2 input names and 1 output.
+* Each line for a binary operation can look like : (result = Operand_1 (operation) Operand_2)
+* EX: make y = x + 3 * 4; becomes:
+* t0 = 3*4
+* t1 = x + 3
+* y = t1
+* That last line (y = t1) is a simple assignment of the form (result = Operand_1)
+
+* A unary operation such as unary minus might look like : (result = (operation) Operand_1)
+EX: make y = -x; becomes :
+t0 = - x;
+y = t0;
+## Temporary Variables
+variables such as t0 and t1, represent each small intermediate operation done to reach our endpoint. In the example we can see the operation done on the two inputs is stored in a temporary variable.
+
+## Labels
+Control flow in TAC is represented with labels
+* For example: (if .x > 5, [ write x; ])  Becomes:
+* t0 = x > 5
+* ifFalse t0 goto L0
+* write x
+* L0;
+*Importantly, L0 is not a variable or piece of data, rather it represents a place in the program flow. This is a marker for where the program can jump to. 
+* So if x is 3 for example, it would skip write x and go to L0;
+
+We can have two kinds of jumps, conditional and unconditional
+Uncondtional jumps are of the form : (goto Label)
+Ex: goto L3
+Conditional jumps are of the form: (Syntax: if x (relop) y goto L (where relop can be <, >, ==, <=, etc.))
+Ex: if a < b goto L
+
