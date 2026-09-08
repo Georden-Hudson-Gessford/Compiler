@@ -1,5 +1,5 @@
 # The code
-nasmsection .data
+* nasmsection .data
     ; Define the string and calculate its exact length
     msg     db 'Hello, World!', 0xA     ; 0xA is the newline character (\n)
     msg_len equ $ - msg                  ; '$' means current address; subtracting msg gives length
